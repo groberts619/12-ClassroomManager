@@ -1,0 +1,31 @@
+<div class="container">
+	<button ui-sref="teacher.detail" type="button" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus-sign"></span> Add Teacher</button>
+	<br>
+	<br>
+	<div class="table-responsive">
+	  <table class="table">
+	    <thead>
+	      <tr>
+	        <th>Name</th>
+	        <th>Email</th>
+	        <th>Telephone</th>
+	        <th>Classes</th>
+	        <th></th>
+	      </tr>
+	    </thead>
+	    <tbody>
+      		<tr ng-repeat="teacher in teacherGridCtrl.teachers">
+		        <td ui-sref="teacher.detail({id:{{teacher.teacherId}}})">{{teacher.name}}</td>
+		        <td ui-sref="teacher.detail({id:{{teacher.teacherId}}})">{{teacher.emailAddress}}</td>
+		        <td ui-sref="teacher.detail({id:{{teacher.teacherId}}})">{{teacher.telephone}}</td>
+		        <td ui-sref="teacher.detail({id:{{teacher.teacherId}}})">{{teacher.classes}}</td>
+		        <td class="pull-right">
+			        <button ui-sref="teacher.detail({id:{{teacher.teacherId}}})" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></button>
+			        &nbsp;&nbsp;&nbsp;
+			        <button class="btn btn-danger" ng-click="teacherGridCtrl.removeTeacher(teacher)"><span class="glyphicon glyphicon-remove"></span></button>
+				</td>
+    		</tr>
+    	</tbody>	  	
+	  </table>
+	</div>
+</div>

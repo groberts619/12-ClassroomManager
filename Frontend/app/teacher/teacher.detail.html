@@ -1,0 +1,79 @@
+<div class="container">
+    <div ng-show="teacherDetailCtrl.isNewTeacher">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Add Teacher</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Name</label>
+                        <input class="form-control" ng-model="teacherDetailCtrl.newTeacher.name">
+                    </div>
+                    <div class="col-md-3">
+                        <label>Email</label>
+                        <input class="form-control" ng-model="teacherDetailCtrl.newTeacher.emailAddress">
+                    </div>
+                    <div class="col-md-2">
+                        <label>Telephone</label>
+                        <input class="form-control" ng-model="teacherDetailCtrl.newTeacher.telephone">
+                    </div>
+                    <div class="col-md-2">
+                        <label>Start Date</label>
+                        <input class="form-control" type="date" ng-model="teacherDetailCtrl.newTeacher.startDate">
+                    </div>
+                    <div class="col-md-2">
+                        <label>End Date</label>
+                        <input class="form-control" type="date" ng-model="teacherDetailCtrl.newTeacher.endDate">
+                    </div>
+                </div>
+                <br>
+                <button ui-sref="teacher.grid" ng-click="teacherDetailCtrl.createTeacher(teacherDetailCtrl.newTeacher)" type="button" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus-sign"></span> Add Teacher</button>
+            </div>
+        </div>
+    </div>
+    <div ng-hide="teacherDetailCtrl.isNewTeacher">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Edit Teacher</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Full Name</label>
+                        <input class="form-control" ng-model="teacherDetailCtrl.currentTeacher.name">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Email Address</label>
+                        <input class="form-control" ng-model="teacherDetailCtrl.currentTeacher.emailAddress">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Telephone</label>
+                        <input class="form-control" ng-model="teacherDetailCtrl.currentTeacher.telephone">
+                    </div>
+                </div>
+                <br>
+                <button type="button" class="btn btn-primary pull-right" ng-click="teacherDetailCtrl.updateTeacher(teacherDetailCtrl.teacherId, teacherDetailCtrl.currentTeacher)"><span class="glyphicon glyphicon-floppy-disk"></span> Save</button>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">Classes</div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="class in teacherDetailCtrl.currentTeacher.classes">
+                                <td ui-sref="class.detail({id:{{class.classId}}})">{{class.name}}</td>
+                                <td ui-sref="class.detail({id:{{class.classId}}})">{{class.startDate | date}}</td>
+                                <td ui-sref="class.detail({id:{{class.classId}}})">{{class.endDate | date}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

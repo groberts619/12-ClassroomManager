@@ -1,0 +1,73 @@
+<div class="container">
+    <div ng-show="studentDetailCtrl.isNewStudent">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Add Student</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Name</label>
+                        <input class="form-control" ng-model="studentDetailCtrl.newStudent.name">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Email</label>
+                        <input class="form-control" ng-model="studentDetailCtrl.newStudent.emailAddress">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Telephone</label>
+                        <input class="form-control" ng-model="studentDetailCtrl.newStudent.telephone">
+                    </div>
+                </div>
+                <br>
+                <button ui-sref="student.grid" ng-click="studentDetailCtrl.createStudent(studentDetailCtrl.newStudent)" type="button" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus-sign"></span> Add Student</button>
+            </div>
+        </div>
+    </div>
+    <div ng-hide="studentDetailCtrl.isNewStudent">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Edit Student</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Full Name</label>
+                        <input class="form-control" ng-model="studentDetailCtrl.currentStudent.name">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Email Address</label>
+                        <input class="form-control" ng-model="studentDetailCtrl.currentStudent.emailAddress">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Telephone</label>
+                        <input class="form-control" ng-model="studentDetailCtrl.currentStudent.telephone">
+                    </div>
+                </div>
+                <br>
+                <button ui-sref="student.grid" type="button" class="btn btn-primary pull-right" ng-click="studentDetailCtrl.updateStudent(studentDetailCtrl.studentId, studentDetailCtrl.currentStudent)"><span class="glyphicon glyphicon-floppy-disk"></span> Save</button>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">Classes</div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Teacher</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="class in studentDetailCtrl.currentStudent.classes">
+                                <td ui-sref="class.detail({id:{{class.classId}}})">{{class.name}}</td>
+                                <td ui-sref="class.detail({id:{{class.classId}}})">{{class.teacher}}</td>
+                                <td ui-sref="class.detail({id:{{class.classId}}})">{{class.startDate | date}}</td>
+                                <td ui-sref="class.detail({id:{{class.classId}}})">{{class.endDate | date}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
